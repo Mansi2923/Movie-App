@@ -1,16 +1,22 @@
-# MovieList App
+# MovieListApp
 
-A modern iOS app for browsing and managing your favorite movies, built with SwiftUI and Firebase.
+MovieListApp is a modern, full-featured iOS application built with Swift and SwiftUI. It empowers users to discover, search, and organize movies with a beautiful, intuitive interface. Leveraging The Movie Database (TMDB) API for rich movie data and Firebase for real-time user management and data sync, this project demonstrates advanced iOS development skills, clean architecture, and a focus on user experience.
 
 ## Features
 
-- Browse movies by different categories (Now Playing, Popular, Top Rated)
-- View detailed movie information including cast, crew, and trailers
-- Add movies to favorites
-- Track your watch status (Want to Watch, Watching, Watched)
-- User authentication and profile management
-- Dark mode support
-- Responsive and modern UI
+- **SwiftUI-first Architecture:** Built entirely with SwiftUI for a responsive, declarative UI and seamless dark mode support.
+- **Firebase Integration:** Real-time authentication, user profiles, and data sync using Firestore and Firebase Auth.
+- **TMDB API Integration:** Fetches up-to-date movie data, including trending, now playing, top rated, and detailed movie info.
+- **Favorites & Watchlist:** Users can add movies to favorites, track their watch status (Want to Watch, Watching, Watched), and manage custom lists.
+- **Personalized Recommendations:** Get movie suggestions based on your preferences and watch history.
+- **Advanced Filtering & Sorting:** Filter movies by genre, year, and rating; sort by title, release date, or rating.
+- **Search Functionality:** Fast, fuzzy search across the entire movie database.
+- **Detailed Movie Pages:** View cast, crew, trailers, ratings, and extended details for each movie.
+- **Modern UI/UX:** Clean, accessible design with smooth navigation, custom components, and thoughtful animations.
+- **Profile Management:** Edit your profile, upload a profile picture, and view your movie stats.
+- **Error Handling & Empty States:** User-friendly error messages and empty state screens for a polished experience.
+- **Scalable Codebase:** Modular structure with clear separation of concerns, making it easy to extend and maintain.
+- **Secure Key Management:** Sensitive API keys and config files are excluded from version control for best security practices.
 
 ## Requirements
 
@@ -49,11 +55,9 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
-      
       match /movies/{movieId} {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
-      
       match /favorites/{movieId} {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
@@ -64,7 +68,7 @@ service cloud.firestore {
 
 5. Configure TMDB API:
    - Get an API key from [TMDB](https://www.themoviedb.org/settings/api)
-   - Replace the `apiKey` in `MovieService.swift` with your key
+   - Replace the `tmdbApiKey` in your config with your key
 
 ## Project Structure
 
@@ -72,20 +76,18 @@ service cloud.firestore {
 MovieListApp/
 ├── Views/              # SwiftUI views
 ├── ViewModels/         # View models
-├── Models/            # Data models
-├── Services/          # Network and Firebase services
-├── Utilities/         # Helper functions and extensions
-└── Resources/         # Assets and configuration files
+├── Models/             # Data models
+├── Services/           # Network and Firebase services
+├── Utilities/          # Helper functions and extensions
+└── Resources/          # Assets and configuration files
 ```
 
 ## Deployment
 
 1. Update version and build numbers in Xcode project settings
-
 2. Archive the app:
    - Select "Any iOS Device" as the build target
    - Go to Product > Archive
-
 3. Upload to App Store:
    - Open Xcode Organizer
    - Select your archive
